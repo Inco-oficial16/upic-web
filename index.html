@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>UPIC - Acceso Restringido</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🔐 UPIC | Sistema de Autenticación</h1>
+  <p>Área clasificada - Solo personal autorizado</p>
+
+  <input type="text" id="user" placeholder="ID de agente"><br>
+  <input type="password" id="pass" placeholder="Clave de acceso"><br>
+  <button onclick="login()">Conectar</button>
+
+  <div id="status"></div>
+
+  <script>
+    // Lista de agentes autorizados (simulada, sin base de datos)
+    const usuarios = {
+      "inco_xeno": "3107",
+      "Gatsby": "2903",
+      "Shadow": "2727",
+      "Lanus": "2929"
+    };
+
+    // Función que se ejecuta cuando haces clic en "Conectar"
+    function login() {
+      const user = document.getElementById("user").value.trim().toLowerCase();
+      const pass = document.getElementById("pass").value.trim();
+      const status = document.getElementById("status");
+
+      status.innerHTML = "🔄 Validando credenciales en servidor UPIC...";
+
+      setTimeout(() => {
+        if (usuarios[user] === pass) {
+          status.innerHTML = "✅ Conectado al servidor oficial de la UPIC<br>🔓 Acceso concedido...";
+          setTimeout(() => {
+            window.location.href = "upic.html";
+          }, 2000);
+        } else {
+          status.innerHTML = "⛔ Acceso denegado. Credenciales incorrectas.";
+        }
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
