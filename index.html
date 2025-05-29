@@ -7,33 +7,32 @@
 </head>
 <body>
   <h1>🔐 UPIC | Sistema de Autenticación</h1>
-  <p>Área clasificada - Solo personal autorizado</p>
+  <p class="subtitulo">Área clasificada - Solo personal autorizado</p>
 
-  <input type="text" id="user" placeholder="ID de agente"><br>
+  <input type="text" id="user" placeholder="ID de agente (ej: Inco_Xeno)"><br>
   <input type="password" id="pass" placeholder="Clave de acceso"><br>
   <button onclick="login()">Conectar</button>
 
   <div id="status"></div>
 
   <script>
-    // Lista de agentes autorizados (simulada, sin base de datos)
+    // Base de datos de agentes simulada
     const usuarios = {
       "inco_xeno": "3107",
       "Gatsby": "2903",
-      "Shadow": "2727",
-      "Lanus": "2929"
+      "shadow": "2727",
+      "lanus": "2929"
     };
 
-    // Función que se ejecuta cuando haces clic en "Conectar"
     function login() {
-      const user = document.getElementById("user").value.trim().toLowerCase();
-      const pass = document.getElementById("pass").value.trim();
+      const userInput = document.getElementById("user").value.trim().toLowerCase();
+      const passInput = document.getElementById("pass").value.trim();
       const status = document.getElementById("status");
 
-      status.innerHTML = "🔄 Validando credenciales en servidor UPIC...";
+      status.innerHTML = "🔄 Validando credenciales en el servidor UPIC...";
 
       setTimeout(() => {
-        if (usuarios[user] === pass) {
+        if (usuarios[userInput] === passInput) {
           status.innerHTML = "✅ Conectado al servidor oficial de la UPIC<br>🔓 Acceso concedido...";
           setTimeout(() => {
             window.location.href = "upic.html";
@@ -41,7 +40,7 @@
         } else {
           status.innerHTML = "⛔ Acceso denegado. Credenciales incorrectas.";
         }
-      }, 2000);
+      }, 1800);
     }
   </script>
 </body>
